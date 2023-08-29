@@ -3,7 +3,7 @@ const Shoe = require("../Models/ShoeModel")
 
 const get_Shoes = async (req, res) => {
   try {
-    const shoes = await Shoe.find({}).sort({ createdAt: -1 })
+    const shoes = await Shoe.find({ quantity: { $gt: 0 } }).sort({ createdAt: -1 });
     // return res.status(201).json(shoes)
     const groupShoes = new Map();
 
