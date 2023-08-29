@@ -11,6 +11,6 @@ router.post("/create",createOrder)
 router.patch("/pay/:id", payOrder)
 router.delete("/delete/:id", deleteOrder)
 router.get("/:email", getOrders)
-router.post("/quantity/:id",changeQuantity)
+router.patch("/quantity/:id",changeQuantity)
 
 module.exports = router
