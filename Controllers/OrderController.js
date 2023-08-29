@@ -15,7 +15,7 @@ const changeQuantity = async (req, res) => {
     const exists = await Order.updateOne({ _id: req.params.id }, { $inc: { quantity: valeur } })
     if (!exists)
       return res.status(401).json({ err: "order doesnt exists" })
-    res.status(401).json(exists)
+    res.status(201).json(exists)
   } catch (err) {
     res.status(501).json(err)
   }
