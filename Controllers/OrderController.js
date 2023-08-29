@@ -23,6 +23,10 @@ const changeQuantity = async (req, res) => {
 
 const createOrder = async (req, res) => {
   try {
+    const exists = await Order.findOne(req.body )
+    if (!exists)
+      return res.status(404).json({ err:"alrddy exists"})
+    
     const order = await Order.create(req.body)
     
     if(!order)
