@@ -10,9 +10,9 @@ const getOrders = async (req, res) => {
   }
 }
 const changeQuantity = async (req, res) => {
-  const {quantity} = req.body
+  const {valeur} = req.body
   try {
-    const exists = await Order.findByIdAndUpdate({ _id: req.params.id }, { quantity: quantity })
+    const exists = await Order.updateOne({ _id: req.params.id }, { $inc: { quantity: valeur } })
     if (!exists)
       return res.status(401).json({ err: "order doesnt exists" })
     res.status(401).json(exists)
@@ -24,7 +24,7 @@ const changeQuantity = async (req, res) => {
 const createOrder = async (req, res) => {
   try {
     const exists = await Order.findOne(req.body )
-    if (exists)
+    if ( exists)
       return res.status(404).json({ err:"alrddy exists"})
     
     const order = await Order.create(req.body)
